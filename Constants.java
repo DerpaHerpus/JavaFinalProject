@@ -9,6 +9,7 @@ public interface Commons
   public static final int MAP_LEFT = 5;
   public static final int GO_DOWN = 15;
   public static final int NUMBER_OF_ENEMIES = 24;
+  public static final int ENEMY_SHOT_HEIGHT = 5;
   public static final int CHANCE = 5;
   public static final int DELAY = 17;
   public static final int PLAYER_WIDTH = 15;
