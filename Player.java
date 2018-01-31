@@ -6,7 +6,7 @@ public class Player extends Sprite implements commons
   private final int START_Y = 280;
   private final int START_X = 270;
 
-  private final String playerImg = ;//PUT PLAYER SPIRTE HERE
+  private final String playerImg = "C:\Users\David Tang\Documents\JavaFinalProject\spritey bois\Player.png";
   private int width;
 
   public Player()
