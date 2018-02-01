@@ -1,12 +1,12 @@
 import java.awt.event.KeyEvent;
-import java.swing.ImageIcon;
+import javax.swing.ImageIcon;
 
-public class Player extends Sprite implements commons
+public class Player extends Sprite implements Constants
 {
   private final int START_Y = 280;
   private final int START_X = 270;
 
-  private final String playerImg = "C:\Users\David Tang\Documents\JavaFinalProject\spritey bois\Player.png";
+  private final String playerImg = 12;
   private int width;
 
   public Player()

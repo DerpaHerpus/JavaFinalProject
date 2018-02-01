@@ -1,12 +1,12 @@
-Import javax.swing.ImageIcon
+import javax.swing.ImageIcon;
 
 public class Shot extends Sprite
 {
-  private final String shotImg = //Put Spriteyboi here;
+  private final String shotImg = 2;//Put Spriteyboi here;
   private final int H_SPACE = 6;
   private final int V_SPACE = 1;
 
-  Public Shot(int x, int y)
+  public Shot(int x, int y)
   {
     initShot(x, y);
   }

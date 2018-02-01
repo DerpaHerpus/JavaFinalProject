@@ -11,10 +11,11 @@ import javafx.scene.input.MouseButton;
 import java.util.ArrayList;
 import java.awt.Graphics;
 import java.awt.Dimension;
+import javax.swing.ImageIcon;
 
 public class Map extends Application
 {
-  private Dimensions d;
+  private Dimension d;
   private ArrayList<Enemy> enemies;
   private Player player;
   private Shot shot;
@@ -67,7 +68,7 @@ public class Map extends Application
       }
       if(enemy.isDying())
       {
-        enemy.die()
+        enemy.die();
       }
     }
   }
@@ -93,5 +94,15 @@ public class Map extends Application
       g.drawImage(show.getImage(), shot.getX(), shot.getY(), this);
     }
   }
-
+  public void gameOver()
+  {
+  }
+  public void youWin()
+  {
+    if (deaths == NUMBER_OF_ENEMIES)
+    {
+      ingame = false;
+      message = "You Win!";
+    }
+  }
 }
