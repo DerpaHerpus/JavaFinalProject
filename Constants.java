@@ -1,4 +1,4 @@
-public interface Commons
+public interface Constants
 {
   public static final int MAP_WIDTH = 358;
   public static final int MAP_HEIGHT = 350;

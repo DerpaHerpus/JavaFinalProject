@@ -13,10 +13,10 @@ import java.awt.Graphics;
 import java.awt.Dimension;
 import javax.swing.ImageIcon;
 
-public class Map extends Application
+public class Map extends Application implements Constants
 {
   private Dimension d;
-  private ArrayList<Enemy> enemies;
+  private ArrayList<Enemies> enemies;
   private Player player;
   private Shot shot;
 
