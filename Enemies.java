@@ -1,9 +1,10 @@
+import javafx.scene.image.Image;
 import java.awt.image;
 
 public class Enemies extends Sprite
 {
   private EnemyShot enemyShot;
-  private final String enemySprite = "C:\Users\David Tang\Videos\Enemy.png";
+  Image enemyImg = new Image("Enemy.png");
 
   public Enemies(int x, int y)
   {
