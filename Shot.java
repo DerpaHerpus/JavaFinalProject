@@ -2,7 +2,7 @@ import javax.swing.ImageIcon;
 
 public class Shot extends Sprite
 {
-  private final String shotImg = 2;//Put Spriteyboi here;
+  Image shotImg = new Image("Shot.png");
   private final int H_SPACE = 6;
   private final int V_SPACE = 1;
 
