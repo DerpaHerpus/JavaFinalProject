@@ -1,11 +1,6 @@
 package com.zetcode;
 
-<<<<<<< HEAD:Commons.java
 public interface Commons {
-=======
-public interface Commons
-{
->>>>>>> db93ad06605d8125af6df599f1bf8c6adc6e990e:Commons.java
 
     public static final int BOARD_WIDTH = 358;
     public static final int BOARD_HEIGHT = 350;
