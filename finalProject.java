@@ -1,39 +1,30 @@
-import javafx.application.Application;
-import javafx.application.Platform;
-import javafx.stage.Stage;
-import javafx.scene.Scene;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.paint.Color;
+package com.zetcode;
 
-public class finalProject extends Application
-{
-  public Shell()
-  {
-    background = new SerializableColor(Color.WHITE);
-    currentColor = new SerializableColor(Color.BLACK);
-    mainPane  = new BorderPane();
-  }
-  @Override
-  public void init()
-  {
-  }
-  @Override
-  public void start(Stage primary)
-  {
-    this.primary = primary;
-    primary.show();
-  ]
-  @Override
-  public void stop()
-  {
-  }
-  private void buildMenus()
-  {
-  }
-  public static void main(String[] args)
-  {
-    launch(args);
-  }
+import java.awt.EventQueue;
+import javax.swing.JFrame;
+
+public class finalProject extends JFrame implements Constants {
+
+    public SpaceInvaders() {
+
+        initUI();
+    }
+
+    private void initUI() {
+
+        add(new Board());
+        setTitle("Space Invaders");
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setSize(BOARD_WIDTH, BOARD_HEIGHT);
+        setLocationRelativeTo(null);
+        setResizable(false);
+    }
+
+    public static void main(String[] args) {
+
+        EventQueue.invokeLater(() -> {
+            SpaceInvaders ex = new SpaceInvaders();
+            ex.setVisible(true);
+        });
+    }
 }

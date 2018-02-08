@@ -1,56 +1,59 @@
-import javafx.scene.image.Image;
-import java.awt.image;
+import java.awt.event.*;
+import java.util.Random;
+import javax.swing.*;
+import java.awt.*;
 
-public class Enemies extends Sprite
+public class Enemies extends JPanel
 {
-  private EnemyShot enemyShot;
+  private int size, x, y, dx, dy, bx, by, dbx, dby, numBombs;
+  private Random gen;
+  private Image im;
+  //private Image enemyImg;
+  //Image enemyImg = new Image("Enemy.png");
+
   Image enemyImg = new Image("Enemy.png");
 
-  public Enemies(int x, int y)
+  public Enemies(int x1, int y1, string f)
   {
-    initEnemies(x, y);
+    size = 25;
+    dx = 0;
+    dy = 0;
+    bx = -1;
+    by = -1;
+    dbx = 2;
+    dby = 2;
+    x = x1;
+    y = y1;
+    numBombs = 5;
   }
-  private void initEnemies(int x, int y)
+  public void moveLeft()
   {
-    this.x = x;
-    this.y = y;
+    dx = -1;
+    if (x<=5)
+      x = 850;
+  }
+  public void moveRight()
+  {
+    dx = 1;
+    if (x >= 850)
+      x = 6;
+  }
+  public void draw(Graphics gr)
+  {
+    x += dx;
+      gr.drawImage(im, x, y, size, size, Color.black, this);
+  }
 
-    enemyShot = new EnemyShot(x, y);
-    ImageIcon ii = new Image Icon(enemySprite);
-    setImage(ii.getImage());
-  }
-  public void act(int direction)
+  public int getX()
   {
-    this.x += direction;
+    return x;
   }
-  public EnemyShot getEnemyShot()
+  public int getY()
   {
-    return enemyShot;
+    return y;
   }
-  public class EnemyShot extends Sprite
+  public int getBY()
   {
-    private final String enemyShotImg = //Put enemy shot sprite here;
-    private boolean destroyed;
-
-    public EnemyShot(int x, int y)
-    {
-      initEnemyShot(x, y);
-    }
-    private void initEnemyShot(int x, int y)
-    {
-      setDestroyed(true);
-      this.x = x;
-      this.y = y;
-      ImageIcon ii = new ImageIcon(enemyShotImg);
-      setImage(ii.getImage());
-    }
-    public void setDestroyed(boolean destroyed)
-    {
-      this.destroyed = destroyed;
-    }
-    public boolean isDestroyed()
-    {
-      return destroyed;
-    }
+    return by;
   }
 }

@@ -1,22 +1,27 @@
+package com.zetcode;
+
 import javax.swing.ImageIcon;
 
-public class Shot extends Sprite
-{
-  Image shotImg = new Image("Shot.png");
-  private final int H_SPACE = 6;
-  private final int V_SPACE = 1;
+public class Shot extends Sprite {
 
-  public Shot(int x, int y)
-  {
-    initShot(x, y);
-  }
+    private final String shotImg = "src/images/shot.png";
+    private final int H_SPACE = 6;
+    private final int V_SPACE = 1;
 
-  private void initShot(int x, int y)
-  {
-    ImageIcon ii = new ImageIcon(shotImg);
-    setImage(ii.getImage());
+    public Shot() {
+    }
 
-    setX(x + H_SPACE);
-    setY(x + V_SPACE);
-  }
+    public Shot(int x, int y) {
+
+        initShot(x, y);
+    }
+
+    private void initShot(int x, int y) {
+
+        ImageIcon ii = new ImageIcon(shotImg);
+        setImage(ii.getImage());
+
+        setX(x + H_SPACE);
+        setY(y - V_SPACE);
+    }
 }
