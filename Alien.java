@@ -2,23 +2,23 @@ package com.zetcode;
 
 import javax.swing.ImageIcon;
 
-public class Enemies extends Sprite {
+public class Alien extends Sprite {
 
     private Bomb bomb;
-    private final String EnemyImg = "spritey bois/Enemy.png";
+    private final String alienImg = "src/images/alien.png";
 
-    public Enemy(int x, int y) {
+    public Alien(int x, int y) {
 
-        initEnemy(x, y);
+        initAlien(x, y);
     }
 
-    private void initEnemy(int x, int y) {
+    private void initAlien(int x, int y) {
 
         this.x = x;
         this.y = y;
 
         bomb = new Bomb(x, y);
-        ImageIcon ii = new ImageIcon(EnemyImg);
+        ImageIcon ii = new ImageIcon(alienImg);
         setImage(ii.getImage());
     }
 
@@ -34,7 +34,7 @@ public class Enemies extends Sprite {
 
     public class Bomb extends Sprite {
 
-        private final String bombImg = "spritey bois/Hhot.png";
+        private final String bombImg = "src/images/bomb.png";
         private boolean destroyed;
 
         public Bomb(int x, int y) {

@@ -1,5 +1,7 @@
 package com.zetcode;
+
 import java.awt.event.KeyEvent;
+
 import javax.swing.ImageIcon;
 
 public class Player extends Sprite implements Commons {
@@ -7,7 +9,7 @@ public class Player extends Sprite implements Commons {
     private final int START_Y = 280;
     private final int START_X = 270;
 
-    private final String playerImg = "spritey bois/Player.png";
+    private final String playerImg = "src/images/player.png";
     private int width;
 
     public Player() {

@@ -19,12 +19,12 @@ import javax.swing.JPanel;
 public class Board extends JPanel implements Runnable, Commons {
 
     private Dimension d;
-    private ArrayList<Enemy> Enemies;
+    private ArrayList<Alien> aliens;
     private Player player;
     private Shot shot;
 
-    private final int ENEMY_INIT_X = 150;
-    private final int ENEMY_INIT_Y = 5;
+    private final int ALIEN_INIT_X = 150;
+    private final int ALIEN_INIT_Y = 5;
     private int direction = -1;
     private int deaths = 0;
 
@@ -59,13 +59,13 @@ public class Board extends JPanel implements Runnable, Commons {
 
     public void gameInit() {
 
-        Enemies = new ArrayList<>();
+        aliens = new ArrayList<>();
 
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 6; j++) {
 
-                Enemy enemy = new Enemy(ENEMY_INIT_X + 18 * j, ENEMY_INIT_Y + 18 * i);
-                enemies.add(enemy);
+                Alien alien = new Alien(ALIEN_INIT_X + 18 * j, ALIEN_INIT_Y + 18 * i);
+                aliens.add(alien);
             }
         }
 
@@ -79,20 +79,20 @@ public class Board extends JPanel implements Runnable, Commons {
         }
     }
 
-    public void drawEnemies(Graphics g) {
+    public void drawAliens(Graphics g) {
 
-        Iterator it = enemies.iterator();
+        Iterator it = aliens.iterator();
 
-        for (Enemy enemy: enemies) {
+        for (Alien alien: aliens) {
 
-            if (enemy.isVisible()) {
+            if (alien.isVisible()) {
 
-                g.drawImage(enemy.getImage(), enemy.getX(), enemy.getY(), this);
+                g.drawImage(alien.getImage(), alien.getX(), alien.getY(), this);
             }
 
-            if (enemy.isDying()) {
+            if (alien.isDying()) {
 
-                enemy.die();
+                alien.die();
             }
         }
     }
@@ -121,9 +121,9 @@ public class Board extends JPanel implements Runnable, Commons {
 
     public void drawBombing(Graphics g) {
 
-        for (Enemy a : enemies) {
+        for (Alien a : aliens) {
 
-            Enemy.Bomb b = a.getBomb();
+            Alien.Bomb b = a.getBomb();
 
             if (!b.isDestroyed()) {
 
@@ -143,7 +143,7 @@ public class Board extends JPanel implements Runnable, Commons {
         if (ingame) {
 
             g.drawLine(0, GROUND, BOARD_WIDTH, GROUND);
-            drawEnemies(g);
+            drawAliens(g);
             drawPlayer(g);
             drawShot(g);
             drawBombing(g);
@@ -176,7 +176,7 @@ public class Board extends JPanel implements Runnable, Commons {
 
     public void animationCycle() {
 
-        if (deaths == NUMBER_OF_ENEMIES_TO_DESTROY) {
+        if (deaths == NUMBER_OF_ALIENS_TO_DESTROY) {
 
             ingame = false;
             message = "Game won!";
@@ -191,20 +191,20 @@ public class Board extends JPanel implements Runnable, Commons {
             int shotX = shot.getX();
             int shotY = shot.getY();
 
-            for (Enemy enemy: enemies) {
+            for (Alien alien: aliens) {
 
-                int enemyX = enemy.getX();
-                int enemyY = enemy.getY();
+                int alienX = alien.getX();
+                int alienY = alien.getY();
 
-                if (enemy.isVisible() && shot.isVisible()) {
-                    if (shotX >= (enemyX)
-                            && shotX <= (enemyX + ENEMY_WIDTH)
-                            && shotY >= (enemyY)
-                            && shotY <= (enemyY + ENEMY_HEIGHT)) {
+                if (alien.isVisible() && shot.isVisible()) {
+                    if (shotX >= (alienX)
+                            && shotX <= (alienX + ALIEN_WIDTH)
+                            && shotY >= (alienY)
+                            && shotY <= (alienY + ALIEN_HEIGHT)) {
                         ImageIcon ii
                                 = new ImageIcon(explImg);
-                        enemy.setImage(ii.getImage());
-                        enemy.setDying(true);
+                        alien.setImage(ii.getImage());
+                        alien.setDying(true);
                         deaths++;
                         shot.die();
                     }
@@ -221,18 +221,20 @@ public class Board extends JPanel implements Runnable, Commons {
             }
         }
 
-        for (Enemy enemy: enemies) {
+        // aliens
 
-            int x = enemy.getX();
+        for (Alien alien: aliens) {
+
+            int x = alien.getX();
 
             if (x >= BOARD_WIDTH - BORDER_RIGHT && direction != -1) {
 
                 direction = -1;
-                Iterator i1 = enemies.iterator();
+                Iterator i1 = aliens.iterator();
 
                 while (i1.hasNext()) {
 
-                    Enemy a2 = (Enemy) i1.next();
+                    Alien a2 = (Alien) i1.next();
                     a2.setY(a2.getY() + GO_DOWN);
                 }
             }
@@ -241,48 +243,48 @@ public class Board extends JPanel implements Runnable, Commons {
 
                 direction = 1;
 
-                Iterator i2 = enemys.iterator();
+                Iterator i2 = aliens.iterator();
 
                 while (i2.hasNext()) {
 
-                    Enemy a = (Enemy) i2.next();
+                    Alien a = (Alien) i2.next();
                     a.setY(a.getY() + GO_DOWN);
                 }
             }
         }
 
-        Iterator it = enemys.iterator();
+        Iterator it = aliens.iterator();
 
         while (it.hasNext()) {
 
-            Enemy enemy = (Enemy) it.next();
+            Alien alien = (Alien) it.next();
 
-            if (enemy.isVisible()) {
+            if (alien.isVisible()) {
 
-                int y = enemy.getY();
+                int y = alien.getY();
 
-                if (y > GROUND - ENEMY_HEIGHT) {
+                if (y > GROUND - ALIEN_HEIGHT) {
                     ingame = false;
                     message = "Invasion!";
                 }
 
-                enemy.act(direction);
+                alien.act(direction);
             }
         }
 
         // bombs
         Random generator = new Random();
 
-        for (Enemy enemy: enemies) {
+        for (Alien alien: aliens) {
 
             int shot = generator.nextInt(15);
-            Enemy.Bomb b = enemy.getBomb();
+            Alien.Bomb b = alien.getBomb();
 
-            if (shot == CHANCE && enemy.isVisible() && b.isDestroyed()) {
+            if (shot == CHANCE && alien.isVisible() && b.isDestroyed()) {
 
                 b.setDestroyed(false);
-                b.setX(enemy.getX());
-                b.setY(enemy.getY());
+                b.setX(alien.getX());
+                b.setY(alien.getY());
             }
 
             int bombX = b.getX();
