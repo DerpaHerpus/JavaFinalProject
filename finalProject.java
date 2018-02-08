@@ -5,11 +5,13 @@ import javax.swing.JFrame;
 
 public class finalProject extends JFrame implements Commons
 {
-  public finalProject() {
+  public finalProject()
+  {
         initUI();
   }
 
-  private void initUI() {
+  private void initUI()
+  {
 
     add(new Map());
     setTitle("Space Invaders");
@@ -19,7 +21,8 @@ public class finalProject extends JFrame implements Commons
     setResizable(false);
   }
 
-  public static void main(String[] args) {
+  public static void main(String[] args)
+  {
 
   EventQueue.invokeLater(() ->
     {
